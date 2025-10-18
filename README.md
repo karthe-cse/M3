@@ -14,9 +14,47 @@ To write a program to prepare EMI calculator using function without return type 
 6.	Stop the program.
 
 ## PROGRAM
+#include <stdio.h>
+#include <math.h>
+
+// Step 3: Function to calculate EMI
+double calculateEMI(double principal, double rate, int months) {
+    double r = rate / (12 * 100);  // Convert annual rate (%) to monthly decimal rate
+    double numerator = principal * r * pow(1 + r, months);
+    double denominator = pow(1 + r, months) - 1;
+    return numerator / denominator;
+}
+
+int main() {
+    // Step 2: Declare variables and read input
+    double principal, rate;
+    int months;
+
+    printf("Enter principal amount: ");
+    scanf("%lf", &principal);
+
+    printf("Enter annual rate of interest (in %%): ");
+    scanf("%lf", &rate);
+
+    printf("Enter number of months: ");
+    scanf("%d", &months);
+
+    // Step 4: Calculate EMI by calling the function
+    double emi = calculateEMI(principal, rate, months);
+
+    // Step 5: Display the result
+    printf("EMI amount: %.2lf\n", emi);
+
+    // Step 6: End program
+    return 0;
+}
 
 
 ## OUTPUT
+Enter principal amount: 100000
+Enter annual rate of interest (in %): 10
+Enter number of months: 12
+EMI amount: 8791.59
 
 
 
@@ -43,8 +81,39 @@ To write a C program to generate the Fibonacci series for the value 6.
 7.	Stop the program.
 
 ## PROGRAM
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    int t1 = 0, t2 = 1, nextTerm;
+
+    // Step 2: Read number of terms
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci Series: ");
+
+    for (i = 1; i <= n; i++) {
+        // Step 6: Display the current term
+        printf("%d ", t1);
+
+        // Step 3: Calculate next term
+        nextTerm = t1 + t2;
+
+        // Step 4: Update terms
+        t1 = t2;
+        t2 = nextTerm;
+    }
+
+    printf("\n");
+
+    // Step 7: End program
+    return 0;
+}
 
 ## OUTPUT
+Enter the number of terms: 7
+Fibonacci Series: 0 1 1 2 3 5 8 
 
 
 
@@ -101,9 +170,42 @@ To write a C Program to count total number of positive elements in an array.
 6.	Stop the program.
 
 ## PROGRAM
+#include <stdio.h>
+
+int main() {
+    int n, count = 0;
+
+    // Step 2 & 3: Read number of elements and array values
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];  // Variable length array
+
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Step 4: Count numbers divisible by 2
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0) {
+            count++;
+        }
+    }
+
+    // Step 5: Display result
+    printf("Count of numbers divisible by 2: %d\n", count);
+
+    // Step 6: End program
+    return 0;
+}
 
 
 ## OUTPUT
+Enter the number of elements: 5
+Enter 5 integers:
+1 2 3 4 5
+Count of numbers divisible by 2: 2
 
 
 
@@ -137,9 +239,51 @@ To write a C program to replace all even elements with 'E' in one dimensional ar
  Print the updated array after replacements.
 
 ## Program:
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    // Step 1: Read the size of the array
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    // Use a char array to store both numbers and 'E' characters after replacement
+    // We'll store digits as characters for consistency.
+    char arr[n];
+
+    // Step 1: Input elements (as integers first)
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        int temp;
+        scanf("%d", &temp);
+
+        // Step 3: Replace even elements with 'E', else store digit as char
+        if (temp % 2 == 0) {
+            arr[i] = 'E';
+        } else {
+            // Convert digit to char, assuming single-digit input
+            // If multiple-digit numbers can be input, we need a different approach.
+            arr[i] = (char)(temp + '0');
+        }
+    }
+
+    // Step 4: Output the updated array
+    printf("Updated array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
 
 ## Output:
  
+Enter the size of the array: 7
+Enter 7 integers:
+3 4 7 8 9 2 5
+Updated array: 3 E 7 E 9 E 5 
 
 
 ## Result:
